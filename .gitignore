@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/vue,vuejs,node,webstorm,visualstudiocode,eclipse
-# Edit at https://www.toptal.com/developers/gitignore?templates=vue,vuejs,node,webstorm,visualstudiocode,eclipse
+# Created by https://www.toptal.com/developers/gitignore/api/node,vue,vuejs,visualstudiocode,webstorm,eclipse
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,vue,vuejs,visualstudiocode,webstorm,eclipse
 
 ### Eclipse ###
 .metadata
@@ -312,12 +312,7 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/12206-codestream
 .idea/codestream.xml
 
-# End of https://www.toptal.com/developers/gitignore/api/vue,vuejs,node,webstorm,visualstudiocode,eclipse
+# End of https://www.toptal.com/developers/gitignore/api/node,vue,vuejs,visualstudiocode,webstorm,eclipse
 
+#Ignore the changes in client directory
 client
-.idea/aws.xml
-.idea/mevn-heroku-template.iml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/codeStyles/codeStyleConfig.xml
-.idea/inspectionProfiles/Project_Default.xml
