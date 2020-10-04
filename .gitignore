@@ -313,6 +313,3 @@ fabric.properties
 .idea/codestream.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/node,vue,vuejs,visualstudiocode,webstorm,eclipse
-
-#Ignore the changes in client directory
-client
