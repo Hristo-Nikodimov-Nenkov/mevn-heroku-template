@@ -2,7 +2,7 @@ name: Build client App and create deploy branch
 on: push
 jobs:
   build:
-    name: Build client application
+    name: Build client application and push to deploy branch.
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -18,7 +18,7 @@ jobs:
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
       - name: Checkout deploy branch.
-        run: git checkout deploy
+        run: git checkout -b deploy
       - name: Merge from master branch.
         run: git merge master
       - name: Remove .workflows folder.
