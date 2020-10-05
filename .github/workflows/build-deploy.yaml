@@ -13,13 +13,16 @@ jobs:
       - name: Build
         working-directory: ./client
         run: npm run build
-      - name: Create deploy branch
+      - name: Configure git
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-          git push origin --delete deploy
-          git checkout -B deploy
-          git merge master
+      - name: Remove previous deploy branch
+        run: git push origin --delete deploy
+      - name: Create new deploy branch
+        run: git checkout -B deploy
+      - name: Merge from master branch
+        run: git merge master
       - name: Remove .workflows folder
         uses: JesseTG/rm@v1.0.2
         with:
@@ -36,7 +39,7 @@ jobs:
         uses: JesseTG/rm@v1.0.2
         with:
           path: ./.gitignore
-      - name: Push deploy branch
+      - name: Push to deploy branch
         run: |
           git add -A .
           git commit -m "Created deploy branch"
