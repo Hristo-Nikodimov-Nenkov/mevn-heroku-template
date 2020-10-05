@@ -17,10 +17,8 @@ jobs:
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - name: Remove previous deploy branch.
-        run: git push origin --delete deploy
       - name: Create new deploy branch.
-        run: git checkout -B deploy
+        run: git checkout deploy
       - name: Merge from master branch.
         run: git merge master
       - name: Remove .workflows folder.
