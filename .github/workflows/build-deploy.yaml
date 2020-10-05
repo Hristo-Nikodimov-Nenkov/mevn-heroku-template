@@ -20,7 +20,7 @@ jobs:
       - name: Checkout deploy branch.
         run: git fetch origin deploy
       - name: Clear deploy branch content.
-      - uses: AutoModality/action-clean@v1
+        uses: AutoModality/action-clean@v1
       - name: Merge from master branch.
         run: git merge master
       - name: Remove .workflows folder.
