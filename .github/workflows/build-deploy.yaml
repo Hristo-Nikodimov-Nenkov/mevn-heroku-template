@@ -44,7 +44,7 @@ jobs:
       - name: Remove README.md
         uses: JesseTG/rm@v1.0.2
         with:
-          path: ./.README.md
+          path: ./README.md
       - name: Push to deploy branch
         run: |
           git add -A .
