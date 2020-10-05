@@ -13,3 +13,9 @@ jobs:
       - name: Build
         working-directory: ./client
         run: npm run build
+      - name: Create deploy branch
+        run: |
+          git checkout -D deploy
+          git merge master
+          git add -A .
+          git commit -m "Created deploy branch"
