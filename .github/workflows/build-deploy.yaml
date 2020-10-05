@@ -20,9 +20,9 @@ jobs:
           git checkout -B deploy
           git merge master
       - name: Remove .workflows folder
-          uses: JesseTG/rm@v1.0.2
-          with:
-            path: /.workflows
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: /.workflows
       - name: Remove client folder
         uses: JesseTG/rm@v1.0.2
         with:
@@ -31,6 +31,10 @@ jobs:
         uses: JesseTG/rm@v1.0.2
         with:
           path: /.idea
+      - name: Remove .gitignore
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: /.gitignore
       - name: Push deploy branch
         run: |
           git add -A .
