@@ -2,27 +2,23 @@ name: Build client App and create deploy branch
 on: push
 jobs:
   build:
-    name: Build client application and push to deploy branch.
+    name: Build client application
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
+      - name: Configure git
+        run: |
+          git config user.email ${{secrets.EMAIL}}
+          git config user.name ${{secrets.NAME}}
+      - name: Fetch deploy branch
+        run: git fetch origin deploy
+      - name: Merge master into deploy
+        run: git merge origin/master
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
       - name: Build client application.
         working-directory: ./client
         run: npm run build
-      - name: Configure git
-        run: |
-          git config user.email ${{secrets.EMAIL}}
-          git config user.name ${{secrets.NAME}}
-      - name: Checkout deploy branch.
-        run: git fetch origin deploy
-      - name: Clear deploy branch content.
-        uses: AutoModality/action-clean@v1
-      - name: Merge from master branch.
-        run: git merge master
       - name: Remove .workflows folder.
         uses: JesseTG/rm@v1.0.2
         with:
