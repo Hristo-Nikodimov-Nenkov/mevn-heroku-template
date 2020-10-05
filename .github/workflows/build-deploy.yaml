@@ -23,19 +23,19 @@ jobs:
       - name: Remove .workflows folder
         uses: JesseTG/rm@v1.0.2
         with:
-          path: /.workflows
+          path: ./.github
       - name: Remove client folder
         uses: JesseTG/rm@v1.0.2
         with:
-          path: /client
+          path: ./client
       - name: Remove .idea folder
         uses: JesseTG/rm@v1.0.2
         with:
-          path: /.idea
+          path: ./.idea
       - name: Remove .gitignore
         uses: JesseTG/rm@v1.0.2
         with:
-          path: /.gitignore
+          path: ./.gitignore
       - name: Push deploy branch
         run: |
           git add -A .
