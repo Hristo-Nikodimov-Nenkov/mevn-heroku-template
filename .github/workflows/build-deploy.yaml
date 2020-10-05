@@ -13,6 +13,8 @@ jobs:
           git config user.name ${{secrets.NAME}}
       - name: Create deploy branch from master
         run: git branch deploy
+      - name: Checkout deploy branch
+        run: git checkout deploy
       - name: Remove previous client application build
         uses: JesseTG/rm@v1.0.2
         with:
