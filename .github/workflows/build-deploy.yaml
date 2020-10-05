@@ -17,7 +17,7 @@ jobs:
       - name: Merge master to deploy branch
         run: |
           git checkout deploy
-          git merge master
+          git merge origin/master
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
