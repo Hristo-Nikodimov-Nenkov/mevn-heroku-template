@@ -5,10 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          git config user.email ${{secrets.EMAIL}}
-          git config user.name ${{secrets.NAME}}
-          git checkout -b deploy
-          git add .
-          git commit -m "Created deploy branch."
-          git push
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
