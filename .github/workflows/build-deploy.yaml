@@ -9,25 +9,31 @@ jobs:
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - name: Fetch deploy branch
-        run: git fetch origin deploy
-      - name: Merge master into deploy
-        run: git merge origin/master
+      - name: Fetch origin/deploy branch
+        run: git fetch origin/deploy
+      - name: Checkout Repo
+        uses: actions/checkout@master
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
       - name: Build client application.
         working-directory: ./client
         run: npm run build
+      - name: Remove previous deploy branch.
+        run: git push origin --delete deploy
+      - name: Create new deploy branch.
+        run: git checkout -B deploy
+      - name: Merge from master branch.
+        run: git merge master
       - name: Remove .workflows folder.
         uses: JesseTG/rm@v1.0.2
         with:
           path: ./.github
-      - name: Remove client folder.
+      - name: Remove client folder
         uses: JesseTG/rm@v1.0.2
         with:
           path: ./client
-      - name: Remove .idea folder.
+      - name: Remove .idea folder
         uses: JesseTG/rm@v1.0.2
         with:
           path: ./.idea
