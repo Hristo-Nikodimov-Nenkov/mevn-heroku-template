@@ -17,7 +17,7 @@ jobs:
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - name: Create new deploy branch.
+      - name: Checkout deploy branch.
         run: git checkout deploy
       - name: Merge from master branch.
         run: git merge master
