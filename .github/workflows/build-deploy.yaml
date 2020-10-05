@@ -7,22 +7,22 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: Configure git
+        run: |
+          git config user.email ${{secrets.EMAIL}}
+          git config user.name ${{secrets.NAME}}
+      - name: Fetch origin deploy branch.
+        run: git fetch origin/deploy
+      - name: Checkout deploy branch
+        run: git checkout deploy
+      - name: Merge master to deploy branch
+        run: git merge master
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
       - name: Build client application.
         working-directory: ./client
         run: npm run build
-      - name: Configure git
-        run: |
-          git config user.email ${{secrets.EMAIL}}
-          git config user.name ${{secrets.NAME}}
-      - name: Remove previous deploy branch
-        run: git push origin --delete deploy
-      - name: Create new deploy branch
-        run: git checkout -B deploy
-      - name: Merge from master branch
-        run: git merge master
       - name: Remove .workflows folder
         uses: JesseTG/rm@v1.0.2
         with:
