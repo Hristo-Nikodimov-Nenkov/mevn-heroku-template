@@ -6,7 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          git branch -D deploy
           git checkout -b deploy
           git add .
           git commit -m "Created deploy branch."
