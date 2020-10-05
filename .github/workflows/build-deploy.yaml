@@ -1,31 +1,22 @@
 name: Build client App and create deploy branch
 on: push
 jobs:
-  prepare-deploy-branch:
-    name: Prepare deploy branch
+  prepare-build-cleanup-push:
+    name: Prepare deploy branch, Build client application, Remove unneeded files, push to deploy branch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master branch
         uses: actions/checkout@master
-      - name: Checkout deploy branch
-        uses: actions/checkout@v2
-        with:
-          ref: deploy
       - name: Configure git
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - name: Merge master onto deploy
-        run: git merge origin/master
+      - name: Create deploy branch from master
+        run: git branch deploy
       - name: Remove previous client application build
         uses: JesseTG/rm@v1.0.2
         with:
           path: ./server/public
-  build-client-application:
-    name: Prepare deploy branch
-    runs-on: ubuntu-latest
-    needs: prepare-deploy-branch
-    steps:
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
@@ -52,4 +43,4 @@ jobs:
         run: |
           git add -A .
           git commit -m "Created deploy branch by continuous-integration workflow"
-          git push origin deploy
+          git push origin deploy -f
