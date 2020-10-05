@@ -17,8 +17,8 @@ jobs:
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
+          git push origin --delete deploy
           git checkout -B deploy
-          git pull origin deploy
           git merge master
       - name: Remove .workflows folder
         uses: JesseTG/rm@v1.0.2
