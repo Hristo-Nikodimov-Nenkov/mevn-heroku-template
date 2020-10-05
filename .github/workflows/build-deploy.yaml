@@ -18,7 +18,7 @@ jobs:
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
       - name: Checkout deploy branch.
-        run: git checkout -b deploy
+        run: git checkout --track origin/deploy
       - name: Merge from master branch.
         run: git merge master
       - name: Remove .workflows folder.
