@@ -19,6 +19,20 @@ jobs:
           git config user.name ${{secrets.NAME}}
           git checkout -B deploy
           git merge master
+      - name: Remove .workflows folder
+          uses: JesseTG/rm@v1.0.2
+          with:
+            path: /.workflows
+      - name: Remove client folder
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: /client
+      - name: Remove .idea folder
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: /.idea
+      - name: Push deploy branch
+        run: |
           git add -A .
           git commit -m "Created deploy branch"
           git push origin deploy
