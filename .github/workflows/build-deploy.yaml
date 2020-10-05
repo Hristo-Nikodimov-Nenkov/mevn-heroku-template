@@ -1,8 +1,8 @@
-name: Merge master to deploy
+name: Merge any release branch to uat
 on:
   push:
     branches:
-      - master
+      - 'master'
 jobs:
   merge-branch:
     runs-on: ubuntu-latest
@@ -14,4 +14,4 @@ jobs:
         with:
           type: now
           target_branch: deploy
-          github_token: ${{ github.token }}
+          github_token: ${{ GITHUB_TOKEN }}
