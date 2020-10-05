@@ -11,10 +11,9 @@ jobs:
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - name: Fetch origin deploy branch.
-        run: git fetch origin/deploy
-      - name: Checkout deploy branch
-        run: git checkout deploy
+      - uses: actions/checkout@v2
+        with:
+          ref: deploy
       - name: Merge master to deploy branch
         run: git merge master
       - name: Install Dependencies for client application.
