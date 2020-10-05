@@ -42,5 +42,5 @@ jobs:
       - name: Push to deploy branch
         run: |
           git add -A .
-          git commit -m "Created deploy branch"
+          git commit -m "Created deploy branch by continuous-integration workflow"
           git push origin deploy
