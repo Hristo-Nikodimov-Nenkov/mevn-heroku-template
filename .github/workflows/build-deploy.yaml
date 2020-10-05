@@ -2,10 +2,14 @@ name: Build client App and create deploy branch
 on: push
 jobs:
   build:
+    name: Build client application
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install Dependencies
+        working-directory: ./client
+        run: npm install
+      - name: Build
+        working-directory: ./client
+        run: npm run build
