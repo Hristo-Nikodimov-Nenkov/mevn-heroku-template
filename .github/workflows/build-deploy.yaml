@@ -1,17 +1,13 @@
-name: Merge any release branch to uat
-on:
-  push:
-    branches:
-      - 'master'
+name: Build client App and create deploy branch
+on: push
 jobs:
-  merge-branch:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Merge master -> deploy
-        uses: devmasx/merge-branch@v1.3.0
-        with:
-          type: now
-          target_branch: deploy
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          git branch -D deploy
+          git checkout -b deploy
+          git add .
+          git commit -m "Created deploy branch."
+          git push
