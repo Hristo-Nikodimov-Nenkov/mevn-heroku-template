@@ -1,30 +1,38 @@
 name: Build client App and create deploy branch
 on: push
 jobs:
-  build:
-    name: Build client application
+  prepare-deploy-branch:
+    name: Prepare deploy branch
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout master branch
         uses: actions/checkout@master
+      - name: Checkout deploy branch
+        uses: actions/checkout@v2
+        with:
+          ref: deploy
       - name: Configure git
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - uses: actions/checkout@v2
+      - name: Merge master onto deploy
+        run: git merge origin/master
+      - name: Remove previous client application build
+        uses: JesseTG/rm@v1.0.2
         with:
-          ref: deploy
-      - name: Merge master to deploy branch
-        run: |
-          git checkout deploy
-          git rebase master
+          path: ./server/public
+  build-client-application:
+    name: Prepare deploy branch
+    runs-on: ubuntu-latest
+    needs: prepare-deploy-branch
+    steps:
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
       - name: Build client application.
         working-directory: ./client
         run: npm run build
-      - name: Remove .workflows folder
+      - name: Remove .github folder
         uses: JesseTG/rm@v1.0.2
         with:
           path: ./.github
