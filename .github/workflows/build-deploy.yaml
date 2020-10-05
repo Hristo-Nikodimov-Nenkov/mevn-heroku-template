@@ -5,17 +5,15 @@ jobs:
     name: Build client application
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
+      - uses: actions/checkout@v2
+        with:
+          ref: deploy
       - name: Configure git
         run: |
           git config user.email ${{secrets.EMAIL}}
           git config user.name ${{secrets.NAME}}
-      - uses: actions/checkout@v2
-        with:
-          ref: deploy
       - name: Merge master to deploy branch
-        run: git merge master
+        run: git merge origin/master
       - name: Install Dependencies for client application.
         working-directory: ./client
         run: npm install
