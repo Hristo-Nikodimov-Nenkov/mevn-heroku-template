@@ -15,4 +15,4 @@ They are needed for the git commands in the workflow. Without them the workflow 
 The push to deploy branch is last in the workflow.
 ### 9) Press "Enable Automatic Deploys"
 
-#THIS IS IT!
+# !!! If you ever need to delete branch "deploy" and create it again, then you must go to heroku too and set again Auto Deploy (step 7) !!!
