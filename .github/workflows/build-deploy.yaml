@@ -1,5 +1,7 @@
 name: Build client App and create deploy branch
-on: push
+push:
+  branches:
+    - master
 jobs:
   prepare-build-cleanup-push:
     name: Prepare deploy branch, Build client application, Remove unneeded files, push to deploy branch
