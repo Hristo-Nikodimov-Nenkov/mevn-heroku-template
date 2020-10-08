@@ -109,6 +109,7 @@ build/Release
 
 # Dependency directories
 node_modules/
+**/node_modules
 jspm_packages/
 
 # TypeScript v1 declaration files
@@ -315,3 +316,4 @@ fabric.properties
 .idea/codestream.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/node,vue,vuejs,visualstudiocode,webstorm,eclipse
+/server/public
