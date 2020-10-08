@@ -5,5 +5,5 @@ module.exports = function (app) {
     app.use("/accounts", accountsRouter);
     app.use("/api", apiRouter);
     app.use(/.*/, (req, res) =>
-        res.send(path.resolve(__dirname, "./../public/index.html")));
+        res.sendFile(path.resolve(__dirname, "./../public/index.html")));
 }
