@@ -11,5 +11,6 @@ app.use(cors());
 
 app.use(express.static(path.resolve(__dirname ,"./public/")));
 
+require("./configs/middlewares")(app);
 require("./configs/routes")(app);
 require("./configs/server")(app);
