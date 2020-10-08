@@ -1,4 +1,4 @@
-const accountsService = require("accountsService");
+const accountsService = require("./accountsService");
 
 module.exports = {
     accountsService

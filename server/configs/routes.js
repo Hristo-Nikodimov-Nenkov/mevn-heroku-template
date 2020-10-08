@@ -4,7 +4,6 @@ const path = require("path");
 module.exports = function (app) {
     app.use("/accounts", accountsRouter);
     app.use("/api", apiRouter);
-    app.use(/.*./, (req, res) =>
-        res.sendFile(path.resolve(__dirname, "./../public/index.html"))
-    );
+    app.use(/.*/, (req, res) =>
+        res.send(path.resolve(__dirname, "./../public/index.html")));
 }
