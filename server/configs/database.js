@@ -26,12 +26,12 @@ function getConnectionString(db){
     return connectionString
 }
 
-const db = dbConnections[process.env.NODE_ENV] || dbConnections["development"];
+const connection = dbConnections[process.env.NODE_ENV] || dbConnections["development"];
 
 module.exports = function () {
-    mongoose.connect(getConnectionString(db), {useNewUrlParser: true, useUnifiedTopology: true})
-        .then(() => {
-            console.log("Database connection established.");
+    mongoose.connect(getConnectionString(connection), {useNewUrlParser: true, useUnifiedTopology: true})
+        .then((db) => {
+            console.log(`Connected to ${connection.databaseName}`);
         })
         .catch((err) => {
             console.log(err);
