@@ -1,10 +1,11 @@
 const app = require("express")();
 
 const {database, routes, server} = require("./configs");
-const {bodyParser} = require("./middlewares");
+const {staticFiles, bodyParser} = require("./middlewares");
 
 database();
 
+staticFiles(app);
 bodyParser(app);
 
 routes(app);
