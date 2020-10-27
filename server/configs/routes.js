@@ -1,6 +1,9 @@
-const path = require("path");
+const common = require("./common");
+
+const fallback = (req, res) =>{
+    res.sendFile(common.indexHtml);
+}
 
 module.exports = function (app) {
-    app.use(/.*/, (req, res) =>
-        res.sendFile(path.resolve(__dirname, "./../public/index.html")));
+    app.use(/.*/, fallback);
 }
