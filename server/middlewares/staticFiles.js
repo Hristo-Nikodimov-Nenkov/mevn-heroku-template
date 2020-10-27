@@ -1,9 +1,6 @@
-const path = require("path");
 const staticFiles = require("express").static;
-
-const relativePath = "./../public";
-const staticFilesPath = path.resolve(__dirname, relativePath);
+const {common} = require("./../configs");
 
 module.exports = function (app) {
-    app.use(staticFiles(staticFilesPath))
+    app.use(staticFiles(common.staticFiles));
 }
