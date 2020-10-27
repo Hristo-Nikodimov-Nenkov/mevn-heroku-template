@@ -1,6 +1,5 @@
 module.exports = {
     database: require("./database"),
-    routes: require("./routes"),
-    server: require("./server"),
+    cookies: require("./cookies"),
     common: require("./common")
 }

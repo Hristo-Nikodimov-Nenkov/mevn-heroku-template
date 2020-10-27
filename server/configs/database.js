@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-
 dbConnections = {
     development: {
         host: "localhost",
@@ -15,25 +13,21 @@ dbConnections = {
     }
 }
 
-function getConnectionString(db) {
-    let connectionString = "mongodb://";
-
-    if (db.username || db.password) {
-        connectionString += `${db.username}:${db.params}@`
-    }
-    connectionString += `${db.host}:${db.port}/${db.databaseName}`
-
-    return connectionString
-}
-
 const connection = dbConnections[process.env.NODE_ENV] || dbConnections["development"];
 
-module.exports = function () {
-    mongoose.connect(getConnectionString(connection), {useNewUrlParser: true, useUnifiedTopology: true})
-        .then((db) => {
-            console.log(`Connected to ${connection.databaseName}`);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+function getConnectionString(connection) {
+
+    let connectionString = "mongodb://";
+    if (connection.username || connection.password) {
+        connectionString += `${connection.username}:${connection.params}@`
+    }
+
+    connectionString += `${connection.host}:${connection.port}/${connection.databaseName}`
+    return connectionString
+
+}
+
+module.exports = {
+    connection,
+    getConnectionString
 }

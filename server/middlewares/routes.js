@@ -1,6 +1,6 @@
-const common = require("./common");
+const {common} = require("./../configs");
 
-const fallback = (req, res) =>{
+const fallback = (req, res) => {
     res.sendFile(common.indexHtml);
 }
 
