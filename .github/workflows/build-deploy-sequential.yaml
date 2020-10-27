@@ -1,0 +1,80 @@
+name: Build Client, create and push to deploy branch
+on:
+  push:
+    branches:
+      - master
+jobs:
+  checkout-master:
+    name: Checkout master branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@master
+  configure-git:
+    name: Configure Git
+    runs-on: ubuntu-latest
+    needs: checkout-master
+    steps:
+      - name: Configure git
+        run: |
+          git config user.email ${{secrets.EMAIL}}
+          git config user.name ${{secrets.NAME}}
+  prepare-deploy-branch:
+    name: Prepare deploy branch
+    needs: [checkout-master, configure-git]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create deploy branch from master
+        run: git branch deploy
+      - name: Checkout deploy branch
+        run: git checkout deploy
+  build-client-app:
+    name: Build client application
+    needs: [checkout-master, configure-git, prepare-deploy-branch]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove previous client application build
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: ./server/public
+      - name: Install Dependencies for client application.
+        working-directory: ./client
+        run: npm install
+      - name: Build client application.
+        working-directory: ./client
+        run: npm run build
+  remove-unnecesery:
+    name: Remove unnecesery files and folders
+    needs: [checkout-master, configure-git, prepare-deploy-branch, build-client-app]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove .github folder
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: ./.github
+      - name: Remove client folder
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: ./client
+      - name: Remove .idea folder
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: ./.idea
+      - name: Remove .gitignore
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: ./.gitignore
+      - name: Remove README.md
+        uses: JesseTG/rm@v1.0.2
+        with:
+          path: ./README.md
+  push-deploy-branch:
+    name: Push the deploy branch
+    needs: [checkout-master, configure-git, prepare-deploy-branch, build-client-app, remove-unnecesery]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Push to deploy branch
+        run: |
+          git add -A .
+          git commit -m "Created deploy branch by continuous-integration workflow"
+          git push origin deploy -f
