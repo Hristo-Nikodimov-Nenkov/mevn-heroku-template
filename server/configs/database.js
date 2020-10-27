@@ -15,7 +15,7 @@ dbConnections = {
     }
 }
 
-function getConnectionString(db){
+function getConnectionString(db) {
     let connectionString = "mongodb://";
 
     if (db.username || db.password) {
