@@ -1,4 +1,8 @@
 module.exports = {
+    database: require("./database"),
     staticFiles: require("./staticFiles"),
-    bodyParser: require("./bodyParser")
+    bodyParser: require("./bodyParser"),
+    cookieParser: require("./cookieParser"),
+    routes: require("./routes"),
+    server: require("./server")
 }
