@@ -1,8 +1,8 @@
 <template>
-  <div id="not-found-page" class="app-view-page">
+  <main id="not-found-page" class="app-view-page">
     <h1>No such page exists!</h1>
     <h2>Auto redirect to home.</h2>
-  </div>
+  </main>
 </template>
 
 <script>

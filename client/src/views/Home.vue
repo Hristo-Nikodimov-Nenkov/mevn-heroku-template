@@ -1,7 +1,7 @@
 <template>
-  <div id="home-page" class="app-view-page">
+  <main id="home-page" class="app-view-page">
     <h1>Home page.</h1>
-  </div>
+  </main>
 </template>
 
 <script>
