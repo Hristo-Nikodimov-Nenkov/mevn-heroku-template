@@ -32,6 +32,10 @@ nav {
   padding: 5px 15px;
 }
 
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+
 @media screen and (max-width: 500px) {
   nav {
     display: flex;
