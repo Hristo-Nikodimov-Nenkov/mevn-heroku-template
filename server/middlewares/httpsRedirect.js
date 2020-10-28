@@ -6,7 +6,7 @@ const skipFor = [
 
 function redirectToHttps(req, res, next) {
     if (!req.secure) {
-        res.redirect('https://' + req.headers.host + req.url);
+        res.redirect(301, 'https://' + req.headers.host + req.url);
     }
 
     next();
