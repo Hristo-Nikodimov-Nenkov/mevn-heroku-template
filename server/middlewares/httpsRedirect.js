@@ -1,5 +1,5 @@
 const herokuSslRedirect = require("heroku-ssl-redirect");
 
 module.exports = function (app) {
-    app.use(herokuSslRedirect(['production'],301));
+    app.use(herokuSslRedirect());
 }
