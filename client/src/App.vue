@@ -1,12 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <nav-menu id="nav-menu"/>
+    <router-view id="app-page"/>
+    <app-footer id="app-footer"/>
   </div>
 </template>
+
+<script>
+import NavMenu from "@/components/common/NavMenu";
+import AppFooter from "@/components/common/AppFooter";
+
+export default {
+  components: {
+    NavMenu,
+    AppFooter
+  }
+}
+</script>
 
 <style>
 #app {
@@ -15,18 +25,21 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: grid;
+  grid-template-areas: "navigation" "content" "footer";
+  grid-template-rows: max-content auto max-content;
+  height: 96vh;
 }
 
-#nav {
-  padding: 30px;
+#nav-menu{
+  grid-area: navigation;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+#app-page{
+  grid-area: content;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+#app-footer{
+  grid-area: footer;
 }
 </style>
