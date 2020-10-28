@@ -5,11 +5,11 @@ const skipFor = [
 ]
 
 function redirectToHttps(req, res, next) {
-    if (req.secure) {
-        next();
-    } else {
+    if (!req.secure) {
         res.redirect('https://' + req.headers.host + req.url);
     }
+
+    next();
 }
 
 module.exports = function (app) {
