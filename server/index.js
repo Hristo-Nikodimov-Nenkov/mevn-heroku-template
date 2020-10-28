@@ -11,6 +11,7 @@ const {
 } = require("./middlewares");
 
 database();
+
 sslRedirect(app);
 staticFiles(app);
 bodyParser(app);
