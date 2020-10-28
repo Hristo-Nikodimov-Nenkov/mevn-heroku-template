@@ -2,7 +2,6 @@ const app = require("express")();
 
 const {
     database,
-    httpsEnforce,
     staticFiles,
     bodyParser,
     cookieParser,
@@ -12,7 +11,6 @@ const {
 
 database();
 
-httpsEnforce(app);
 staticFiles(app);
 bodyParser(app);
 cookieParser(app);
