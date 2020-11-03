@@ -21,6 +21,6 @@ function authenticate(req, res, next) {
     next();
 }
 
-export default function (app) {
+module.exports = function (app) {
     app.use(authenticate);
 }
