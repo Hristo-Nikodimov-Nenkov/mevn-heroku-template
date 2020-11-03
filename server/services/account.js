@@ -7,6 +7,10 @@ const {jwt, cookies} = require("./../configs");
 
 function login(req, res) {
     res.cookie(cookies.tokenCookieName, jsonwebtoken.sign(req.body, jwt.secret, cookies.options, (err, token) => {
+        if(err){
+            console.log(err);
+        }
+
         if (!err && token) {
             res.status(200).send(req.body);
         }
