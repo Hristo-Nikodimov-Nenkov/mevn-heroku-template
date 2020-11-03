@@ -6,9 +6,8 @@ const jsonwebtoken = require("jsonwebtoken");
 const {jwt, cookies} = require("./../configs");
 
 function login(req, res) {
-    res.cookie(cookies.tokenCookieName, jsonwebtoken.sign(req.body, jwt.secret, jwt.options, (err, token) => {
+    res.cookie(cookies.tokenCookieName, jsonwebtoken.sign(req.body, jwt.secret, cookies.options, (err, token) => {
         if (!err && token) {
-            res.cookie(cookies.tokenCookieName, token, cookies.options);
             res.status(200).send(req.body);
         }
     }));
