@@ -2,7 +2,6 @@ const app = require("express")();
 
 const {
     database,
-    sslRedirect,
     staticFiles,
     bodyParser,
     cookieParser,
@@ -12,7 +11,6 @@ const {
 
 database();
 
-sslRedirect(app);
 staticFiles(app);
 bodyParser(app);
 cookieParser(app);
