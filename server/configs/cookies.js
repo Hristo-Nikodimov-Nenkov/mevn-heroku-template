@@ -6,11 +6,13 @@ const configs = {
     }
 }
 
-function getConfigs(env) {
-    if (env === "production") {
+function getConfigs() {
+    if (process.env.NODE_ENV === "production") {
         configs.secret = process.env.COOKIES_SECRET;
         configs.options.secure = true; // Omit this line when NOT SERVED OVER HTTPS!
     }
 
     return configs;
 }
+
+module.exports = getConfigs();

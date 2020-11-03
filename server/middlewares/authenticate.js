@@ -2,17 +2,22 @@ const jwt = require("jsonwebtoken");
 const jwtConfigs = require("./../configs").jwt;
 
 function authenticate(req, res, next) {
-    if (req.signedCookies.authCookie) {
+    console.log(`Cookies = ${JSON.stringify(req.cookies)}`);
+    console.log(`SignedCookies = ${JSON.stringify(req.signedCookies)}`);
+
+    const authCookie = req.cookies.authCookie || req.signedCookies.authCookie;
+
+    if (authCookie) {
         jwt.verify(
-            req.signedCookies.authCookie,
+            authCookie,
             jwtConfigs.secret,
             (err, payload) => {
                 if (err) {
                     console.log(err);
                 }
 
-                if (payload && payload.keys.length > 0) {
-                    req.user = payload
+                if (payload) {
+                    req.user = payload;
                 }
             }
         )
