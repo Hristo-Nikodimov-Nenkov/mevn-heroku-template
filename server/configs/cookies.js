@@ -3,7 +3,8 @@ const configs = {
     options: {
         httpOnly: true,
         secure: false
-    }
+    },
+    tokenCookieName:"authCookie"
 }
 
 function getConfigs() {
