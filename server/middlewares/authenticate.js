@@ -1,16 +1,16 @@
-const jwt = require("jsonwebtoken");
-const jwtConfigs = require("./../configs").jwt;
+const token = require("jsonwebtoken");
+const {jwt, cookies} = require("./../configs");
 
 function authenticate(req, res, next) {
     console.log(`Cookies = ${JSON.stringify(req.cookies)}`);
     console.log(`SignedCookies = ${JSON.stringify(req.signedCookies)}`);
 
-    const authCookie = req.cookies.authCookie || req.signedCookies.authCookie;
+    const authCookie = req.cookies[cookies.tokenCookieName] || req.signedCookies[cookies.tokenCookieName];
 
     if (authCookie) {
-        jwt.verify(
+        token.verify(
             authCookie,
-            jwtConfigs.secret,
+            jwt.secret,
             (err, payload) => {
                 if (err) {
                     console.log(err);
