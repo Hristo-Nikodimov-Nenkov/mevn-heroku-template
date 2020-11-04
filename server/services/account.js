@@ -10,13 +10,17 @@ function login(req, res) {
         req.body,
         jwt.secret,
         jwt.options,
-        (err,token)=>{
-            if(!err && token){
+        (err, token) => {
+            if(err){
+                console.log(err);
+            }
+
+            if (token) {
                 res.cookie(cookies.tokenCookieName, token, cookies.options);
             }
-    })
 
-    res.status(200).send(req.body);
+            res.status(200).send(req.body);
+        })
 }
 
 module.exports = {
