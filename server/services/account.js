@@ -6,15 +6,17 @@ const jsonwebtoken = require("jsonwebtoken");
 const {jwt, cookies} = require("./../configs");
 
 function login(req, res) {
-    res.cookie(cookies.tokenCookieName, jsonwebtoken.sign(req.body, jwt.secret, cookies.options, (err, token) => {
-        if(err){
-            console.log(err);
-        }
+    jsonwebtoken.sign(
+        req.body,
+        jwt.secret,
+        jwt.options,
+        (err,token)=>{
+            if(!err && token){
+                res.cookie(cookies.tokenCookieName, token, cookies.options);
+            }
+    })
 
-        if (!err && token) {
-            res.status(200).send(req.body);
-        }
-    }));
+    res.status(200).send(req.body);
 }
 
 module.exports = {
