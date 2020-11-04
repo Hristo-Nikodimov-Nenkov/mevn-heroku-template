@@ -13,7 +13,11 @@ They are needed for the git commands in the workflow. Without them the workflow 
 ### 6) Press the "Search" button and select the repo.
 ### 7) In "Choose a branch to deploy" select "deploy"
 ### 8) Leave "Wait for CI to pass before deploy" UNCHECKED!
-The push to deploy branch is last in the workflow.
+The push to the "deploy" branch is last in the workflow.
 ### 9) Press "Enable Automatic Deploys"
+### 10) You must setup some environment variables:
+COOKIES_SECRET - The cookies signing secret.
+JWT_SECRET - The JsonWebToken signing secret.
+JWT_EXPIRY - The expiration time of the token. (24h 2d ...) 
 
 # !!! If you ever need to delete branch "deploy" and create it again, then you must go to heroku too and set again Auto Deploy (step 7) !!!
