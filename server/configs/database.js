@@ -19,7 +19,7 @@ function getConnectionString(connection) {
     let connectionString = "mongodb://";
 
     if (connection.username || connection.password) {
-        connectionString += `${connection.username}:${connection.params}@`
+        connectionString += `${connection.username}:${connection.password}@`
     }
 
     connectionString += `${connection.host}:${connection.port}/${connection.databaseName}`
