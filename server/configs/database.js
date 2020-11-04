@@ -16,15 +16,14 @@ dbConnections = {
 const connection = dbConnections[process.env.NODE_ENV] || dbConnections["development"];
 
 function getConnectionString(connection) {
-
     let connectionString = "mongodb://";
+
     if (connection.username || connection.password) {
         connectionString += `${connection.username}:${connection.params}@`
     }
 
     connectionString += `${connection.host}:${connection.port}/${connection.databaseName}`
     return connectionString
-
 }
 
 module.exports = {

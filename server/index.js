@@ -10,7 +10,7 @@ const {
     server
 } = require("./middlewares");
 
-//database();
+database();
 
 staticFiles(app);
 bodyParser(app);

@@ -3,6 +3,7 @@ const {database} = require("./../configs");
 
 module.exports = function () {
     const connectionString = database.getConnectionString(database.connection);
+
     mongoose.connect(connectionString,
         {
             useNewUrlParser: true,
