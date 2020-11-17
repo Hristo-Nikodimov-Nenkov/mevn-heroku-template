@@ -3,7 +3,7 @@ const User = require("./../models/User");
 async function registerAsync(model) {
     try {
         if (await User.usernameExists(model.username)) {
-            
+
             throw `Username ${model.username} is already registered.`;
         }
         if (await User.emailExists(model.email)) {
