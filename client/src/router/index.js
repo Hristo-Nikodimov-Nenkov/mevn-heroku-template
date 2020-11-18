@@ -4,10 +4,12 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import homeRoutes from "./home";
+import accountRoutes from "./account";
 import fallbackRoute from "./fallback";
 
 const routes = [
     ...homeRoutes,
+    ...accountRoutes,
     fallbackRoute // This must always be last !!!
 ];
 
